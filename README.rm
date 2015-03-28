@@ -1,0 +1,82 @@
+Build the package with all dependencies
+```
+mvn assembly:assembly
+```
+Command to run the JavaQuery:
+```
+$SPARK_HOME/bin/spark-submit --class <classname> <jar_file_path> <file_path> <column_index> <definition of the expression>
+```
+```
+Usage:
+  ExpressionDemo { <option> } <expression> { <parameter-value> }
+Compiles and evaluates the given expression and prints its value.
+Valid options are
+ -et <expression-type>                        (default: any)
+ -pn <comma-separated-parameter-names>        (default: none)
+ -pt <comma-separated-parameter-types>        (default: none)
+ -te <comma-separated-thrown-exception-types> (default: none)
+ -di <comma-separated-default-imports>        (default: none)
+ -help
+The number of parameter names, types and values must be identical.
+
+```
+
+Example:
+```
+$SPARK_HOME/bin/spark-submit --class JavaScan ~/Desktop/JavaScan-0.0.1-SNAPSHOT-jar-with-dependencies.jar hdfs://localhost:8020/tmp/benchmark/text/tiny/rankings 1 -pn "x" -pt "int" "x > 50"
+```
+
+
+
+
+pom.xml:
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.SnapLogic.java</groupId>
+  <artifactId>JavaScan</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>JavaScan</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-core_2.10</artifactId>
+      <version>1.2.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.janino</groupId>
+      <artifactId>janino</artifactId>
+      <version>2.7.8</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
