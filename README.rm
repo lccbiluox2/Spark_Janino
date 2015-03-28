@@ -1,7 +1,5 @@
 Build the package with all dependencies
-```
-mvn assembly:assembly
-```
+`mvn assembly:assembly`
 Command to run the JavaQuery:
 ```
 $SPARK_HOME/bin/spark-submit --class <classname> <jar_file_path> <file_path> <column_index> <definition of the expression>
