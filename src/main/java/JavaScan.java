@@ -15,7 +15,7 @@ import org.codehaus.commons.compiler.IExpressionEvaluator;
 
 public class JavaScan {
 	public static void main(String[] args) throws Exception {
-		SparkConf conf = new SparkConf().setAppName("Java_Scan");
+		SparkConf conf = new SparkConf().setAppName("Java_Spark");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 		JavaRDD<String> lines = sc.textFile(args[0]);
 

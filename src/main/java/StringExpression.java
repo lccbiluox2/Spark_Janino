@@ -97,21 +97,6 @@ class StringExpression extends DemoBase {
 			System.exit(1);
 		}
 
-		// One command line argument for each parameter.
-		// if (args.length - i != parameterNames.length) {
-		// System.err.println("Parameter value count (" + (args.length - i)
-		// + ") and parameter name count (" + parameterNames.length
-		// + ") do not match; try \"-help\".");
-		// System.exit(1);
-		// }
-
-		// Convert command line arguments to call arguments.
-		// arguments = new Object[parameterNames.length];
-		// for (int j = 0; j < parameterNames.length; ++j) {
-		// arguments[j] = DemoBase
-		// .createObject(parameterTypes[j], args[i + j]);
-		// }
-
 		// Create "ExpressionEvaluator" object.
 		ee = CompilerFactoryFactory.getDefaultCompilerFactory()
 				.newExpressionEvaluator();
